@@ -2,39 +2,35 @@
 project:
   title:        "ALU de 2 bits con lógica y desplazamientos"
   author:       "Carlos Eduardo Giron Barrientos"
-  discord:      ""          # Opcional
+  discord:      ""  # Opcional
   description:  "ALU de 2 bits con suma, resta, lógica y desplazamientos controlada por switches"
   language:     "Verilog"
-  clock_hz:     100000000                    # Combinacional
+  clock_hz:     100000000
   tiles:        "1x1"
-  top_module:   "tt_um_expendedora"
+  top_module:   "tt_um_alu_2bit"
 
   source_files:
-    - "tt_um_expendedora_completa.v"       # Cambia si tu archivo tiene otro nombre
-
+    - "tt_um_alu_2bit.v"
 
 pinout:
-  # Entradas (botones)
-  ui[0]: "BTN_U"     # Botón Up
-  ui[1]: "BTN_L"     # Botón Left
-  ui[2]: "BTN_R"     # Botón Right
-  ui[3]: "BTN_D"     # Botón Down
-  ui[4]: "NC"
-  ui[5]: "NC"
-  ui[6]: "NC"
+  ui[0]: "A[0]"
+  ui[1]: "A[1]"
+  ui[2]: "B[0]"
+  ui[3]: "B[1]"
+  ui[4]: "CTRL[0]"
+  ui[5]: "CTRL[1]"
+  ui[6]: "CTRL[2]"
   ui[7]: "NC"
 
-  # Salidas (LEDs para bebidas)
-  uo[0]: "BEBIDA_1"
-  uo[1]: "BEBIDA_2"
-  uo[2]: "BEBIDA_3"
-  uo[3]: "NC"
+  uo[0]: "RES[0]"
+  uo[1]: "RES[1]"
+  uo[2]: "RES[2]"
+  uo[3]: "RES[3]"
   uo[4]: "NC"
   uo[5]: "NC"
   uo[6]: "NC"
-  uo[7]: "NC"
+  uo[7]: "OVERFLOW"
 
-  # IO bidireccionales no usados
   uio[0]: "NC"
   uio[1]: "NC"
   uio[2]: "NC"
