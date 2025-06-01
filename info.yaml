@@ -5,7 +5,7 @@ project:
   discord:      ""  # Opcional
   description:  "ALU de 2 bits con suma, resta, lógica y desplazamientos controlada por switches"
   language:     "Verilog"
-  clock_hz:     
+  clock_hz:     0
   tiles:        "1x1"
   top_module:   "tt_um_alu_2bit"
 
