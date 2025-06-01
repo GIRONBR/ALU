@@ -10,7 +10,7 @@ project:
   top_module:   "tt_um_alu_2bit"
 
   source_files:
-    - "tt_um_alu_2bit.v"
+    - "tt_um_alu.v"
 
 pinout:
   ui[0]: "A[0]"
