@@ -1,5 +1,7 @@
 #  ALU de 2 Bits - Proyecto para Tiny Tapeout
+## VIDEO
 
+[VIDEO](https://youtu.be/cZcN54I_L-A)
 Este proyecto implementa una **Unidad Aritmético-Lógica (ALU) de 2 bits** utilizando la plataforma **Tiny Tapeout**, que permite a cualquier persona diseñar y fabricar su propio circuito integrado.
 
 ##  Descripción del Diseño
