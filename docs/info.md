@@ -6,10 +6,10 @@ Este proyecto implementa una **Unidad Aritmético-Lógica (ALU) de 2 bits** util
 
 El diseño está escrito en Verilog y se encuentra en el módulo:
 
-```verilog
+verilog
 module tt_um_alu_2bit
 
-### ⚙ Operaciones soportadas
+###  Operaciones soportadas
 
 La ALU implementa las siguientes operaciones:
 
@@ -25,7 +25,7 @@ La ALU implementa las siguientes operaciones:
 | `111`                  | Shift Right   | `A >> 1`                  |
 
 
-### 🔌 Mapeo de Entradas y Salidas
+###  Mapeo de Entradas y Salidas
 
 | Señal             | Función                               |
 |-------------------|----------------------------------------|
