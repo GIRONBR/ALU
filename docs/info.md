@@ -1,34 +1,42 @@
-# Máquina Expendedora Digital - Proyecto Tiny Tapeout
+#  ALU de 2 Bits - Proyecto para Tiny Tapeout
 
-##  Descripción general
+Este proyecto implementa una **Unidad Aritmético-Lógica (ALU) de 2 bits** utilizando la plataforma **Tiny Tapeout**, que permite a cualquier persona diseñar y fabricar su propio circuito integrado.
 
-Este proyecto implementa una **máquina expendedora digital** mediante una máquina de estados finitos (FSM), diseñada para ser integrada en el flujo de fabricación de silicio de [Tiny Tapeout](https://tinytapeout.com/). 
+##  Descripción del Diseño
 
-El diseño simula el comportamiento de una expendedora que acepta monedas mediante botones (`Up`, `Left`, `Right`, `Down`) y entrega bebidas según el crédito acumulado. La máquina cuenta con tres productos posibles (bebidas), indicados por tres salidas (`LEDs`).
+El diseño está escrito en Verilog y se encuentra en el módulo:
 
-##  Funcionamiento del chip
+```verilog
+module tt_um_alu_2bit
 
-El chip está basado en una **FSM de 4 estados**, que representa la cantidad de monedas insertadas:
+### ⚙ Operaciones soportadas
 
-| Estado | Crédito acumulado | Acciones posibles                      |
-|--------|-------------------|----------------------------------------|
-| S0     | $0                | Insertar moneda (`Up`) → va a S1       |
-| S1     | $1                | `Up` → S2, `Left` → compra bebida 1    |
-| S2     | $2                | `Up` → S3, `Left` o `Right` → compra   |
-| S3     | $3+               | `Left`, `Right` o `Down` → compra      |
+La ALU implementa las siguientes operaciones:
 
-###  Entradas (`ui_in`)
-- `ui[0]` = BTN_U → Insertar moneda
-- `ui[1]` = BTN_L → Comprar bebida 1
-- `ui[2]` = BTN_R → Comprar bebida 2
-- `ui[3]` = BTN_D → Comprar bebida 3
-- `rst_n`  → Reset activo en bajo (BTN_C)
+| Control (`ui_in[6:4]`) | Operación     | Descripción               |
+|------------------------|---------------|---------------------------|
+| `000`                  | Suma          | `A + B`, con bit de overflow |
+| `001`                  | Resta         | `A - B`                   |
+| `010`                  | AND           | `A & B`                   |
+| `011`                  | OR            | `A | B`                   |
+| `100`                  | XOR           | `A ^ B`                   |
+| `101`                  | NOT           | `~A` (ignora B)           |
+| `110`                  | Shift Left    | `A << 1`                  |
+| `111`                  | Shift Right   | `A >> 1`                  |
 
-###  Salidas (`uo_out`)
-- `uo[0]` = LED encendido si se compra bebida 1
-- `uo[1]` = LED encendido si se compra bebida 2
-- `uo[2]` = LED encendido si se compra bebida 3
 
-![silicio](https://github.com/GIRONBR/maquina_expendedora.github.io/blob/main/chip.png?raw=true)
+### 🔌 Mapeo de Entradas y Salidas
+
+| Señal             | Función                               |
+|-------------------|----------------------------------------|
+| `ui_in[1:0]`      | Operando A (2 bits)                   |
+| `ui_in[3:2]`      | Operando B (2 bits)                   |
+| `ui_in[6:4]`      | Código de operación (3 bits)          |
+| `uo_out[3:0]`     | Resultado de la operación             |
+| `uo_out[7]`       | Bit de overflow (solo en suma)        |
+| `uo_out[6:4]`     | No usados (relleno con ceros)         |
+| `uio_*`           | No utilizados                         |
+| `clk`, `ena`, `rst_n` | Reservados por formato Tiny Tapeout |
+
 
 
